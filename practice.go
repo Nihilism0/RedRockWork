@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"unicode"
 )
 
 func main() {
@@ -10,15 +9,9 @@ func main() {
 	ret := 1
 	count := 0
 	fmt.Scanf("%s", &a)
-	lens := len(a)
 	b := []rune(a)
-	for _, c := range a {
-		if unicode.Is(unicode.Han, c) {
-			lens -= 2
-		}
-	}
-	for i := 0; i < lens/2; i++ {
-		if b[i] != b[lens-i-1] {
+	for i := 0; i < len(b)/2; i++ {
+		if b[i] != b[len(b)-i-1] {
 			ret = 0
 		}
 	}
@@ -28,10 +21,9 @@ func main() {
 		for _, c := range b {
 			count++
 			fmt.Printf("%c", c)
-			if count == lens/2 {
+			if count == len(b)/2 {
 				break
 			}
 		}
 	}
-
 }
